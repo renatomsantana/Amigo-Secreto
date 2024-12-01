@@ -145,22 +145,6 @@
             color: #ff69b4;
         }
 
-        /* Animação de efeito de papel desenrolando */
-        .paper-roll {
-            animation: rollIn 2s ease-out forwards;
-        }
-
-        @keyframes rollIn {
-            0% {
-                transform: scaleX(0) rotate(180deg);
-                opacity: 0;
-            }
-            100% {
-                transform: scaleX(1) rotate(0deg);
-                opacity: 1;
-            }
-        }
-
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -188,7 +172,7 @@
         <h2>Ajude-nos com uma doação</h2>
         <div class="pix-container">
             <p><strong>Chave Pix:</strong> 
-                <span id="pix-key">[ab0dcb1d-f050-4cb8-9837-e7173fe937b1]</span>
+                <span id="pix-key">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span>
                 <button id="showPixBtn" class="btn">Mostrar Chave Pix</button>
             </p>
         </div>
@@ -214,12 +198,12 @@
 
         <div class="results-container">
             <h3>Resultados:</h3>
-            <ul id="results" class="paper-roll"></ul> <!-- Aplica a animação aqui -->
+            <ul id="results"></ul> <!-- Removido a animação de papel -->
         </div>
 
         <!-- Seção com o ícone do LinkedIn -->
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" target="_blank">
+            <a href="https://www.linkedin.com/in/seu-perfil-linkedin" target="_blank">
                 <i class="fab fa-linkedin"></i> LinkedIn
             </a>
         </div>
