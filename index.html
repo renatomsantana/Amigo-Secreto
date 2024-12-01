@@ -7,22 +7,66 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
             max-width: 600px;
             margin: auto;
             text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .participant {
             margin-bottom: 10px;
+        }
+        #pix-key {
+            display: none; /* Inicialmente ocultando a chave Pix */
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .btn {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Ajude-nos com uma doação</h1>
-        <p><strong>Chave Pix:</strong> <span id="pix-key">[INSIRA SUA CHAVE PIX AQUI]</span></p>
+        <h1>Amigo Secreto</h1>
+
+        <!-- Adicionando o campo para o nome da família -->
+        <label for="familyName">Nome da Família:</label>
+        <input type="text" id="familyName" placeholder="Nome da Família">
+
+        <h2>Ajude-nos com uma doação</h2>
+        <p><strong>Chave Pix:</strong> 
+            <span id="pix-key">[INSIRA SUA CHAVE PIX AQUI]</span>
+            <button id="showPixBtn" class="btn">Mostrar Chave Pix</button>
+        </p>
 
         <h2>Amigo Secreto</h2>
         <label for="organizer">Nome do Organizador:</label>
@@ -38,14 +82,30 @@
             </div>
         </div>
 
-        <button id="addParticipant">Adicionar Participante</button>
-        <button id="generatePairs">Gerar e Sortear</button>
+        <button id="addParticipant" class="btn">Adicionar Participante</button>
+        <button id="generatePairs" class="btn">Gerar e Sortear</button>
 
         <h3>Resultados:</h3>
         <ul id="results"></ul>
     </div>
 
     <script>
+        // Função para alternar a visibilidade da chave Pix
+        const showPixBtn = document.getElementById('showPixBtn');
+        const pixKey = document.getElementById('pix-key');
+
+        showPixBtn.addEventListener('click', () => {
+            // Alterna a visibilidade da chave Pix
+            if (pixKey.style.display === 'none') {
+                pixKey.style.display = 'inline';
+                showPixBtn.textContent = 'Ocultar Chave Pix';
+            } else {
+                pixKey.style.display = 'none';
+                showPixBtn.textContent = 'Mostrar Chave Pix';
+            }
+        });
+
+        // Código para adicionar participantes e gerar os pares
         const participantsDiv = document.getElementById('participants');
         const addParticipantBtn = document.getElementById('addParticipant');
         const generatePairsBtn = document.getElementById('generatePairs');
