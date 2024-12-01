@@ -4,53 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amigo Secreto</title>
+    <!-- Inclusão do Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <style>
+        /* Estilos Globais */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Georgia', serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            color: #333;
         }
         .container {
-            max-width: 600px;
-            margin: auto;
-            text-align: center;
             background-color: white;
+            padding: 30px;
+            max-width: 700px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #555;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        label {
+            display: block;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .participant {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .participant input {
+            flex: 1;
+        }
+
+        .btn {
+            background-color: #ff69b4; /* Cor Rosa */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #f06292; /* Cor Rosa Escuro */
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .results-container {
+            margin-top: 30px;
+            background-color: #f9f9f9;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
-        .participant {
-            margin-bottom: 10px;
-        }
+
         #pix-key {
-            display: none; /* Inicialmente ocultando a chave Pix */
-            margin-top: 10px;
+            display: none;
             font-weight: bold;
-        }
-        .btn {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            margin-top: 10px;
             font-size: 16px;
+            color: #333;
         }
-        .btn:hover {
-            background-color: #0056b3;
+
+        .pix-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        input[type="text"] {
-            padding: 8px;
-            margin: 10px 0;
-            width: 100%;
-            box-sizing: border-box;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+
+        .pix-container button {
+            margin-left: 10px;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 30px;
+            margin-right: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff69b4;
+        }
+
+        /* Animação de efeito de papel desenrolando */
+        .paper-roll {
+            animation: rollIn 2s ease-out forwards;
+        }
+
+        @keyframes rollIn {
+            0% {
+                transform: scaleX(0) rotate(180deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleX(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1, h2 {
+                font-size: 20px;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -63,12 +186,14 @@
         <input type="text" id="familyName" placeholder="Nome da Família">
 
         <h2>Ajude-nos com uma doação</h2>
-        <p><strong>Chave Pix:</strong> 
-            <span id="pix-key">[INSIRA SUA CHAVE PIX AQUI]</span>
-            <button id="showPixBtn" class="btn">Mostrar Chave Pix</button>
-        </p>
+        <div class="pix-container">
+            <p><strong>Chave Pix:</strong> 
+                <span id="pix-key">[ab0dcb1d-f050-4cb8-9837-e7173fe937b1]</span>
+                <button id="showPixBtn" class="btn">Mostrar Chave Pix</button>
+            </p>
+        </div>
 
-        <h2>Amigo Secreto</h2>
+        <h3>Organizador e Participantes</h3>
         <label for="organizer">Nome do Organizador:</label>
         <input type="text" id="organizer" placeholder="Nome do Organizador">
 
@@ -82,11 +207,22 @@
             </div>
         </div>
 
-        <button id="addParticipant" class="btn">Adicionar Participante</button>
-        <button id="generatePairs" class="btn">Gerar e Sortear</button>
+        <div class="btn-container">
+            <button id="addParticipant" class="btn">Adicionar Participante</button>
+            <button id="generatePairs" class="btn">Gerar e Sortear</button>
+        </div>
 
-        <h3>Resultados:</h3>
-        <ul id="results"></ul>
+        <div class="results-container">
+            <h3>Resultados:</h3>
+            <ul id="results" class="paper-roll"></ul> <!-- Aplica a animação aqui -->
+        </div>
+
+        <!-- Seção com o ícone do LinkedIn -->
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
     </div>
 
     <script>
@@ -95,7 +231,6 @@
         const pixKey = document.getElementById('pix-key');
 
         showPixBtn.addEventListener('click', () => {
-            // Alterna a visibilidade da chave Pix
             if (pixKey.style.display === 'none') {
                 pixKey.style.display = 'inline';
                 showPixBtn.textContent = 'Ocultar Chave Pix';
@@ -105,7 +240,7 @@
             }
         });
 
-        // Código para adicionar participantes e gerar os pares
+        // Função para adicionar participantes
         const participantsDiv = document.getElementById('participants');
         const addParticipantBtn = document.getElementById('addParticipant');
         const generatePairsBtn = document.getElementById('generatePairs');
