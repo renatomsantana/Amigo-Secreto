@@ -26,16 +26,13 @@
             background-color: #0066cc;
             color: white;
             padding: 10px 0;
-            font-size: 1.2em;
+            font-size: 1em;
             border-radius: 5px;
         }
-        .donation-message {
+        .donation-message, .pix-key {
             display: inline-block;
             margin-right: 20px;
-        }
-        .pix-key {
-            font-size: 1.2em;
-            display: inline-block;
+            font-size: 1em; /* Garantir que o tamanho da fonte seja igual para ambos */
         }
         .container {
             margin-top: 40px;
@@ -111,8 +108,8 @@
     <div class="container">
         <h1>Amigo Secreto</h1>
 
-        <label for="organizer">Nome do Organizador:</label>
-        <input type="text" id="organizer" placeholder="Nome do Organizador">
+        <label for="organizer">Nome da Família:</label>
+        <input type="text" id="organizer" placeholder="Nome da Família">
 
         <div id="participants">
             <h3>Participantes</h3>
@@ -174,6 +171,16 @@
             });
         });
 
+        togglePixBtn.addEventListener('click', () => {
+            if (pixKey.style.display === 'none') {
+                pixKey.style.display = 'inline';
+                togglePixBtn.textContent = 'Ocultar';
+            } else {
+                pixKey.style.display = 'none';
+                togglePixBtn.textContent = 'Exibir';
+            }
+        });
+
         function shuffleAndPair(array) {
             const shuffled = [...array].sort(() => Math.random() - 0.5);
             const pairs = [];
@@ -184,16 +191,6 @@
             }
             return pairs;
         }
-
-        togglePixBtn.addEventListener('click', () => {
-            if (pixKey.style.display === 'none') {
-                pixKey.style.display = 'inline';
-                togglePixBtn.textContent = 'Ocultar';
-            } else {
-                pixKey.style.display = 'none';
-                togglePixBtn.textContent = 'Exibir';
-            }
-        });
     </script>
 </body>
 </html>
