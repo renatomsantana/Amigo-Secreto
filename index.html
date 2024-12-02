@@ -25,8 +25,13 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        h1, h2 {
+        h1 {
             color: #0066cc; /* Cor azul */
+            font-size: 2.5em; /* Aumentando o tamanho do título */
+        }
+        h2 {
+            color: #0066cc; /* Cor azul */
+            font-size: 1.2em; /* Diminuindo o tamanho da doação */
         }
         .button {
             background-color: #0066cc; /* Cor azul */
@@ -69,14 +74,23 @@
             border-radius: 5px;
             margin-bottom: 10px;
         }
-        .linkedin-icon {
-            font-size: 30px;
+        .linkedin-link {
             color: #0066cc;
+            font-size: 1.2em;
             text-decoration: none;
             margin-top: 20px;
             transition: color 0.3s;
         }
-        .linkedin-icon:hover {
+        .linkedin-link:hover {
+            color: #005bb5;
+        }
+        .pix-toggle {
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #0066cc;
+            transition: color 0.3s;
+        }
+        .pix-toggle:hover {
             color: #005bb5;
         }
     </style>
@@ -85,7 +99,7 @@
     <div class="container">
         <h1>Ajude-nos com uma doação</h1>
         <p><strong>Chave Pix:</strong> <span id="pix-key">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span></p>
-        <button class="button" id="togglePix">Mostrar Chave Pix</button>
+        <button class="pix-toggle" id="togglePix">👁️‍🗨️</button>
 
         <h2>Amigo Secreto</h2>
         <label for="organizer">Nome do Organizador:</label>
@@ -107,10 +121,8 @@
         <h3>Resultados:</h3>
         <ul id="results"></ul>
 
-        <h3>Conecte-se comigo:</h3>
-        <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" target="_blank" class="linkedin-icon">
-            <i class="fab fa-linkedin"></i> <!-- Ícone do LinkedIn -->
-        </a>
+        <h3>Conecte-se comigo no LinkedIn:</h3>
+        <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" target="_blank" class="linkedin-link">Renato M. Santana</a>
     </div>
 
     <script>
@@ -157,10 +169,10 @@
         togglePixBtn.addEventListener('click', () => {
             if (pixKey.style.display === 'none') {
                 pixKey.style.display = 'inline';
-                togglePixBtn.textContent = 'Ocultar Chave Pix';
+                togglePixBtn.textContent = '👁️‍🗨️'; // Mostrar a chave Pix
             } else {
                 pixKey.style.display = 'none';
-                togglePixBtn.textContent = 'Mostrar Chave Pix';
+                togglePixBtn.textContent = '👁️‍🗨️'; // Ocultar a chave Pix
             }
         });
 
@@ -176,7 +188,5 @@
         }
     </script>
 
-    <!-- Adicionando o ícone do LinkedIn -->
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
