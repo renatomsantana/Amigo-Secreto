@@ -22,8 +22,13 @@
             color: white;
             padding: 10px;
             width: 100%;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 0.9em;
+        }
+        .donation-message span {
+            font-size: 1.1em;
         }
         .container {
             width: 80%;
@@ -106,12 +111,12 @@
 </head>
 <body>
     <div class="donation-message">
-        <strong>Chave Pix:</strong> ab0dcb1d-f050-4cb8-9837-e7173fe937b1
+        <span><strong>Ajude-nos com uma doação</strong></span>
+        <span><strong>Chave Pix:</strong> ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span>
     </div>
 
     <div class="container">
         <h1>Amigo Secreto</h1>
-        <h2>Ajude-nos com uma doação</h2>
 
         <label for="organizer">Nome do Organizador:</label>
         <input type="text" id="organizer" placeholder="Nome do Organizador">
