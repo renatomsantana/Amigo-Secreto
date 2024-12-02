@@ -1,28 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amigo Secreto</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Georgia', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
         }
         .container {
             max-width: 600px;
-            margin: auto;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .participant {
-            margin-bottom: 10px;
+        h1 {
+            color: #ff66b2;
+        }
+        h2 {
+            color: #ff66b2;
+        }
+        .participant input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff66b2;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e65c9d;
+        }
+        #pix-key {
+            font-weight: bold;
+            color: #ff66b2;
+        }
+        .hidden {
+            display: none;
+        }
+        .show-button {
+            background-color: #4CAF50;
+            border-radius: 5px;
+            color: white;
+            margin-top: 10px;
+        }
+        .show-button:hover {
+            background-color: #45a049;
+        }
+        h3 {
+            margin-top: 30px;
+            color: #ff66b2;
+        }
+        #results {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+        #results li {
+            background-color: #ffebf2;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Ajude-nos com uma doação</h1>
-        <p><strong>Chave Pix:</strong> <span id="pix-key">[INSIRA SUA CHAVE PIX AQUI]</span></p>
+        <p><strong>Chave Pix:</strong> <span id="pix-key" class="hidden">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span></p>
+        <button class="show-button" id="togglePix">Mostrar Chave Pix</button>
 
         <h2>Amigo Secreto</h2>
         <label for="organizer">Nome do Organizador:</label>
@@ -50,6 +114,8 @@
         const addParticipantBtn = document.getElementById('addParticipant');
         const generatePairsBtn = document.getElementById('generatePairs');
         const resultsList = document.getElementById('results');
+        const togglePixBtn = document.getElementById('togglePix');
+        const pixKey = document.getElementById('pix-key');
 
         let participantCount = 2;
 
@@ -82,6 +148,11 @@
                 li.textContent = `${pair[0]} -> ${pair[1]}`;
                 resultsList.appendChild(li);
             });
+        });
+
+        togglePixBtn.addEventListener('click', () => {
+            pixKey.classList.toggle('hidden');
+            togglePixBtn.textContent = pixKey.classList.contains('hidden') ? 'Mostrar Chave Pix' : 'Ocultar Chave Pix';
         });
 
         function shuffleAndPair(array) {
