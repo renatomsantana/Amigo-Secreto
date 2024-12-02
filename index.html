@@ -15,6 +15,15 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            flex-direction: column;
+        }
+        .donation-message {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9em;
         }
         .container {
             width: 80%;
@@ -27,11 +36,11 @@
         }
         h1 {
             color: #0066cc; /* Cor azul */
-            font-size: 2.5em; /* Aumentando o tamanho do título */
+            font-size: 3em; /* Aumentando mais o tamanho do título */
         }
         h2 {
             color: #0066cc; /* Cor azul */
-            font-size: 1.2em; /* Diminuindo o tamanho da doação */
+            font-size: 1.1em; /* Diminuindo o tamanho da doação */
         }
         .button {
             background-color: #0066cc; /* Cor azul */
@@ -96,12 +105,14 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Ajude-nos com uma doação</h1>
-        <p><strong>Chave Pix:</strong> <span id="pix-key">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span></p>
-        <button class="pix-toggle" id="togglePix">👁️‍🗨️</button>
+    <div class="donation-message">
+        <strong>Chave Pix:</strong> ab0dcb1d-f050-4cb8-9837-e7173fe937b1
+    </div>
 
-        <h2>Amigo Secreto</h2>
+    <div class="container">
+        <h1>Amigo Secreto</h1>
+        <h2>Ajude-nos com uma doação</h2>
+
         <label for="organizer">Nome do Organizador:</label>
         <input type="text" id="organizer" placeholder="Nome do Organizador">
 
@@ -187,6 +198,5 @@
             return pairs;
         }
     </script>
-
 </body>
 </html>
