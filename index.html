@@ -13,24 +13,30 @@
             color: #333;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
             flex-direction: column;
         }
         .donation-message {
             background-color: #0066cc;
             color: white;
-            padding: 10px;
+            padding: 10px 20px;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9em;
+            font-size: 1.1em;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
         }
         .donation-message span {
-            font-size: 1.1em;
+            font-size: 1em;
         }
         .container {
+            margin-top: 80px; /* Espaço para a barra de doação */
             width: 80%;
             max-width: 800px;
             background-color: #fff;
