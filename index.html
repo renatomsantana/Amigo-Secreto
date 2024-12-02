@@ -16,45 +16,50 @@
             align-items: flex-start;
             min-height: 100vh;
             flex-direction: column;
+            text-align: center;
         }
-        .donation-message {
+        .donation-message-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
             background-color: #0066cc;
             color: white;
-            padding: 10px 20px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.1em;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
+            padding: 10px 0;
+            font-size: 1.2em;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .donation-message {
+            display: inline-block;
+            margin-right: 20px;
         }
         .donation-message span {
-            font-size: 1em;
+            font-size: 1.1em;
+        }
+        .pix-key {
+            font-size: 1.2em;
+            display: inline-block;
         }
         .container {
-            margin-top: 80px; /* Espaço para a barra de doação */
+            margin-top: 40px;
             width: 80%;
             max-width: 800px;
             background-color: #fff;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
         h1 {
-            color: #0066cc; /* Cor azul */
-            font-size: 3em; /* Aumentando mais o tamanho do título */
+            color: #0066cc;
+            font-size: 3em;
         }
         h2 {
-            color: #0066cc; /* Cor azul */
-            font-size: 1.1em; /* Diminuindo o tamanho da doação */
+            color: #0066cc;
+            font-size: 1.1em;
         }
         .button {
-            background-color: #0066cc; /* Cor azul */
+            background-color: #0066cc;
             color: white;
             padding: 12px 25px;
             border: none;
@@ -77,52 +82,29 @@
         input[type="text"] {
             padding: 10px;
             width: 80%;
-            max-width: 300px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
+            margin: 5px;
+            font-size: 1em;
             border-radius: 5px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            text-align: left;
-            margin: 20px 0;
-        }
-        li {
-            padding: 10px;
-            background-color: #f4f4f4;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .linkedin-link {
-            color: #0066cc;
-            font-size: 1.2em;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: color 0.3s;
-        }
-        .linkedin-link:hover {
-            color: #005bb5;
-        }
-        .pix-toggle {
-            font-size: 1.2em;
-            cursor: pointer;
-            color: #0066cc;
-            transition: color 0.3s;
-        }
-        .pix-toggle:hover {
-            color: #005bb5;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
-    <div class="donation-message">
-        <span><strong>Ajude-nos com uma doação</strong></span>
-        <span><strong>Chave Pix:</strong> ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span>
+
+    <!-- Donation message with Pix Key -->
+    <div class="donation-message-container">
+        <div class="donation-message">
+            <strong>Ajude-nos com uma doação</strong>
+        </div>
+        <div class="pix-key">
+            <span>Chave Pix: <span id="pix-key">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span></span>
+            <button class="button" id="togglePix">Ocultar</button>
+        </div>
     </div>
 
     <div class="container">
         <h1>Amigo Secreto</h1>
+        <h2>Organize seu sorteio de amigo secreto facilmente</h2>
 
         <label for="organizer">Nome do Organizador:</label>
         <input type="text" id="organizer" placeholder="Nome do Organizador">
@@ -142,9 +124,6 @@
 
         <h3>Resultados:</h3>
         <ul id="results"></ul>
-
-        <h3>Conecte-se comigo no LinkedIn:</h3>
-        <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" target="_blank" class="linkedin-link">Renato M. Santana</a>
     </div>
 
     <script>
@@ -188,16 +167,6 @@
             });
         });
 
-        togglePixBtn.addEventListener('click', () => {
-            if (pixKey.style.display === 'none') {
-                pixKey.style.display = 'inline';
-                togglePixBtn.textContent = '👁️‍🗨️'; // Mostrar a chave Pix
-            } else {
-                pixKey.style.display = 'none';
-                togglePixBtn.textContent = '👁️‍🗨️'; // Ocultar a chave Pix
-            }
-        });
-
         function shuffleAndPair(array) {
             const shuffled = [...array].sort(() => Math.random() - 0.5);
             const pairs = [];
@@ -208,6 +177,16 @@
             }
             return pairs;
         }
+
+        togglePixBtn.addEventListener('click', () => {
+            if (pixKey.style.display === 'none') {
+                pixKey.style.display = 'inline';
+                togglePixBtn.textContent = 'Ocultar';
+            } else {
+                pixKey.style.display = 'none';
+                togglePixBtn.textContent = 'Exibir';
+            }
+        });
     </script>
 </body>
 </html>
