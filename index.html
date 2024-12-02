@@ -6,7 +6,6 @@
     <title>Amigo Secreto</title>
     <!-- Inclusão do Font Awesome para ícones -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
     <style>
         /* Estilos Globais */
         body {
@@ -20,6 +19,7 @@
             min-height: 100vh;
             color: #333;
         }
+
         .container {
             background-color: white;
             padding: 30px;
@@ -89,25 +89,12 @@
             background-color: #f06292; /* Cor Rosa Escuro */
         }
 
-        .btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .btn-container {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
         .results-container {
             margin-top: 30px;
             background-color: #f9f9f9;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
         }
 
         #pix-key {
@@ -116,16 +103,6 @@
             margin-top: 10px;
             font-size: 16px;
             color: #333;
-        }
-
-        .pix-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .pix-container button {
-            margin-left: 10px;
         }
 
         .social-links {
@@ -143,21 +120,6 @@
 
         .social-links a:hover {
             color: #ff69b4;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-
-            h1, h2 {
-                font-size: 20px;
-            }
-
-            .btn-container {
-                flex-direction: column;
-                gap: 10px;
-            }
         }
     </style>
 </head>
@@ -198,7 +160,7 @@
 
         <div class="results-container">
             <h3>Resultados:</h3>
-            <ul id="results"></ul> <!-- Removido a animação de papel -->
+            <ul id="results"></ul>
         </div>
 
         <!-- Seção com o ícone do LinkedIn -->
