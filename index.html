@@ -80,7 +80,7 @@
             display: none;
             margin-top: 10px;
         }
-        input[type="text"] {
+        input[type="text"], input[type="email"] {
             padding: 8px;
             width: 80%;
             margin: 5px;
@@ -122,9 +122,11 @@
             <h3>Participantes</h3>
             <div class="participant">
                 <input type="text" placeholder="Nome do Participante 1">
+                <input type="email" placeholder="E-mail do Participante 1">
             </div>
             <div class="participant">
                 <input type="text" placeholder="Nome do Participante 2">
+                <input type="email" placeholder="E-mail do Participante 2">
             </div>
         </div>
 
@@ -155,14 +157,19 @@
             participantCount++;
             const participantDiv = document.createElement('div');
             participantDiv.classList.add('participant');
-            participantDiv.innerHTML = `<input type="text" placeholder="Nome do Participante ${participantCount}">`;
+            participantDiv.innerHTML = `<input type="text" placeholder="Nome do Participante ${participantCount}">
+                                        <input type="email" placeholder="E-mail do Participante ${participantCount}">`;
             participantsDiv.appendChild(participantDiv);
         });
 
         generatePairsBtn.addEventListener('click', () => {
-            const participants = Array.from(document.querySelectorAll('#participants input'))
-                .map(input => input.value.trim())
-                .filter(name => name !== '');
+            const participants = Array.from(document.querySelectorAll('#participants .participant'))
+                .map(participant => {
+                    const name = participant.querySelector('input[type="text"]').value.trim();
+                    const email = participant.querySelector('input[type="email"]').value.trim();
+                    return { name, email };
+                })
+                .filter(({ name, email }) => name && email);
 
             if (participants.length < 3) {
                 alert('Adicione pelo menos 3 participantes para sortear!');
@@ -173,9 +180,12 @@
             resultsList.innerHTML = '';
             pairs.forEach(pair => {
                 const li = document.createElement('li');
-                li.textContent = `${pair[0]} -> ${pair[1]}`;
+                li.textContent = `${pair[0].name} -> ${pair[1].name}`;
                 resultsList.appendChild(li);
             });
+
+            // Enviar os resultados por e-mail para cada participante (parte do backend)
+            sendEmails(pairs);
         });
 
         togglePixBtn.addEventListener('click', () => {
@@ -197,6 +207,26 @@
                 pairs.push([giver, receiver]);
             }
             return pairs;
+        }
+
+        function sendEmails(pairs) {
+            // Essa função deve ser conectada ao backend para enviar os e-mails com os resultados.
+            // Exemplo de envio dos dados via API, se você estiver usando uma API de envio de e-mails
+            fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pairs })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('E-mails enviados com sucesso!');
+            })
+            .catch(error => {
+                console.error('Erro ao enviar os e-mails:', error);
+                alert('Houve um erro ao enviar os e-mails.');
+            });
         }
     </script>
 </body>
