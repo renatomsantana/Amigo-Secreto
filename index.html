@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amigo Secreto - Natal</title>
+    <title>Amigo Secreto</title>
     <style>
         body {
             font-family: Georgia, Arial, sans-serif;
@@ -44,7 +44,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border: 2px solid #b30000; /* Bordas vermelhas para tema de natal */
+            border: 2px solid #b30000; /* Bordas vermelhas */
         }
         h1 {
             color: #b30000; /* Vermelho Natal */
@@ -97,37 +97,9 @@
         .linkedin-link:hover {
             text-decoration: underline;
         }
-        /* Christmas elements */
-        .christmas-tree {
-            font-size: 3em;
-            color: #006400; /* Verde mais escuro */
-            margin: 20px 0;
-        }
-        .snowflakes {
-            font-size: 1.5em;
-            color: #fff;
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: snowflakes 5s infinite;
-        }
-        @keyframes snowflakes {
-            0% {
-                top: -20%;
-                opacity: 1;
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 <body>
-
-    <!-- Christmas decorations -->
-    <div class="snowflakes">❄️❄️❄️❄️❄️</div>
 
     <!-- Donation message with Pix Key -->
     <div class="donation-message-container">
@@ -141,7 +113,7 @@
     </div>
 
     <div class="container">
-        <h1>Amigo Secreto - Natal</h1>
+        <h1>Amigo Secreto</h1>
 
         <label for="organizer">Nome da Família:</label>
         <input type="text" id="organizer" placeholder="Nome da Família">
@@ -163,8 +135,6 @@
         <ul id="results"></ul>
 
         <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" class="linkedin-link" target="_blank">Conecte-se comigo no LinkedIn</a>
-
-        <div class="christmas-tree">🎄</div>
     </div>
 
     <script>
