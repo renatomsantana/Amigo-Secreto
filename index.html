@@ -1,87 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amigo Secreto</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f7f7f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Georgia, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
         }
         .container {
             max-width: 600px;
-            margin: auto;
+            margin: 50px auto;
             text-align: center;
             background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #f34f98;
+        }
+        .button {
+            background-color: #f34f98;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #d73a80;
         }
         .participant {
             margin-bottom: 10px;
         }
-        .wrapper {
-            width: 100%;
-            height: 100px;
-            overflow: hidden;
-            position: relative;
-            margin-top: 20px;
-        }
-        .paper {
-            width: 100%;
-            height: 100%;
-            background-color: #f0e68c;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transform-origin: right;
-            animation: unwrap 3s ease-out forwards;
-        }
-        @keyframes unwrap {
-            0% {
-                transform: rotateY(90deg);
-            }
-            100% {
-                transform: rotateY(0deg);
-            }
-        }
-        h1 {
-            color: #ff4081;
-        }
-        input, button {
-            padding: 10px;
-            margin-top: 10px;
-            width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #ff4081;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #e0356c;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
+        #pix-key {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Ajude-nos com uma doação</h1>
-        <p><strong>Chave Pix:</strong> <span id="pix-key">[INSIRA SUA CHAVE PIX AQUI]</span></p>
-        <button onclick="togglePix()">Ocultar/Mostrar Chave Pix</button>
+        <p><strong>Chave Pix:</strong> <span id="pix-key">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span></p>
+        <button class="button" id="togglePix">Mostrar Chave Pix</button>
 
         <h2>Amigo Secreto</h2>
         <label for="organizer">Nome do Organizador:</label>
@@ -97,11 +66,16 @@
             </div>
         </div>
 
-        <button id="addParticipant">Adicionar Participante</button>
-        <button id="generatePairs">Gerar e Sortear</button>
+        <button class="button" id="addParticipant">Adicionar Participante</button>
+        <button class="button" id="generatePairs">Gerar e Sortear</button>
 
         <h3>Resultados:</h3>
         <ul id="results"></ul>
+
+        <h3>Conecte-se comigo:</h3>
+        <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" target="_blank">
+            <button class="button">Visite meu LinkedIn</button>
+        </a>
     </div>
 
     <script>
@@ -109,6 +83,8 @@
         const addParticipantBtn = document.getElementById('addParticipant');
         const generatePairsBtn = document.getElementById('generatePairs');
         const resultsList = document.getElementById('results');
+        const togglePixBtn = document.getElementById('togglePix');
+        const pixKey = document.getElementById('pix-key');
 
         let participantCount = 2;
 
@@ -143,6 +119,16 @@
             });
         });
 
+        togglePixBtn.addEventListener('click', () => {
+            if (pixKey.style.display === 'none') {
+                pixKey.style.display = 'inline';
+                togglePixBtn.textContent = 'Ocultar Chave Pix';
+            } else {
+                pixKey.style.display = 'none';
+                togglePixBtn.textContent = 'Mostrar Chave Pix';
+            }
+        });
+
         function shuffleAndPair(array) {
             const shuffled = [...array].sort(() => Math.random() - 0.5);
             const pairs = [];
@@ -152,15 +138,6 @@
                 pairs.push([giver, receiver]);
             }
             return pairs;
-        }
-
-        function togglePix() {
-            const pixKey = document.getElementById('pix-key');
-            if (pixKey.style.display === "none") {
-                pixKey.style.display = "inline";
-            } else {
-                pixKey.style.display = "none";
-            }
         }
     </script>
 </body>
