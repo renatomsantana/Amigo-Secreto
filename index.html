@@ -26,10 +26,10 @@
             text-align: center;
         }
         h1, h2 {
-            color: #f34f98;
+            color: #0066cc; /* Cor azul */
         }
         .button {
-            background-color: #f34f98;
+            background-color: #0066cc; /* Cor azul */
             color: white;
             padding: 12px 25px;
             border: none;
@@ -40,7 +40,7 @@
             transition: background-color 0.3s;
         }
         .button:hover {
-            background-color: #d73a80;
+            background-color: #005bb5;
         }
         .participant {
             margin-bottom: 15px;
@@ -68,6 +68,16 @@
             background-color: #f4f4f4;
             border-radius: 5px;
             margin-bottom: 10px;
+        }
+        .linkedin-icon {
+            font-size: 30px;
+            color: #0066cc;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: color 0.3s;
+        }
+        .linkedin-icon:hover {
+            color: #005bb5;
         }
     </style>
 </head>
@@ -98,8 +108,8 @@
         <ul id="results"></ul>
 
         <h3>Conecte-se comigo:</h3>
-        <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" target="_blank">
-            <button class="button">Visite meu LinkedIn</button>
+        <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" target="_blank" class="linkedin-icon">
+            <i class="fab fa-linkedin"></i> <!-- Ícone do LinkedIn -->
         </a>
     </div>
 
@@ -165,5 +175,8 @@
             return pairs;
         }
     </script>
+
+    <!-- Adicionando o ícone do LinkedIn -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
