@@ -5,152 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amigo Secreto</title>
     <style>
-        /* Reset de margin e padding */
-        * {
+        body {
+            font-family: Georgia, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
+            background-color: #f0f8ff;
+            color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
+            justify-content: flex-start;
+            min-height: 100vh;
             text-align: center;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #003366;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #003366;
-        }
-
-        /* Estilo para o cabeçalho de doação e chave Pix */
-        .donation-info {
+        /* Theme Header */
+        .donation-message-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            width: 100%;
+            background-color: #008000; /* Verde Natal */
+            color: white;
+            padding: 10px 0;
+            font-size: 1.2em;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .donation-info span {
-            color: #003366;
+        .donation-message, .pix-key {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 1em; /* Tamanho igual para ambos */
         }
-
-        .pix-key {
-            font-size: 1.4rem;
-            font-weight: normal;
-            color: #ff6600;
+        .container {
+            margin-top: 40px;
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #b30000; /* Bordas vermelhas */
         }
-
+        h1 {
+            color: #b30000; /* Vermelho Natal */
+            font-size: 3.5em;
+            margin-top: 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'Georgia', sans-serif;
+        }
+        h2 {
+            color: #008000; /* Verde Natal */
+            font-size: 1.2em;
+            font-weight: bold;
+        }
         .button {
-            background-color: #007bff;
+            background-color: #b30000; /* Vermelho Natal */
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 16px;
+            margin: 15px 0;
+            transition: background-color 0.3s;
         }
-
-        /* Animação de "papel desenrolando" */
-        @keyframes unravel {
-            0% {
-                transform: rotateX(90deg);
-                opacity: 0;
-            }
-            100% {
-                transform: rotateX(0deg);
-                opacity: 1;
-            }
+        .button:hover {
+            background-color: #990000; /* Tom mais escuro de vermelho */
         }
-
-        .paper {
-            width: 300px;
-            height: 150px;
-            background-color: #d0c6a1;
-            margin: 20px auto;
-            transform-origin: top;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #003366;
-            padding: 10px;
-            opacity: 0;
-            animation: unravel 2s forwards;
-            display: none; /* Inicialmente escondido */
-        }
-
-        .results {
-            margin-top: 20px;
-        }
-
-        /* Estilos do formulário */
-        input {
-            padding: 10px;
-            margin: 5px;
-            width: 250px;
-            font-size: 1rem;
-        }
-
         .participant {
             margin-bottom: 10px;
+        }
+        #pix-key {
+            display: none;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 80%;
+            margin: 5px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .linkedin-link {
+            font-size: 1.1em;
+            margin-top: 20px;
+            color: #b30000;
+            text-decoration: none;
+        }
+        .linkedin-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="donation-info">
-        <p>Ajude-nos com uma doação</p>
-        <span class="pix-key">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span>
-    </div>
 
-    <h1>Amigo Secreto</h1>
-
-    <h2>Nome da Família</h2>
-    <input type="text" id="organizer" placeholder="Nome da Família" />
-
-    <div id="participants">
-        <h3>Participantes</h3>
-        <div class="participant">
-            <input type="text" placeholder="Nome do Participante 1">
+    <!-- Donation message with Pix Key -->
+    <div class="donation-message-container">
+        <div class="donation-message">
+            <strong>Ajude-nos com uma doação</strong>
         </div>
-        <div class="participant">
-            <input type="text" placeholder="Nome do Participante 2">
+        <div class="pix-key">
+            <span>Chave Pix: <span id="pix-key">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span></span>
+            <button class="button" id="togglePix">Ocultar</button>
         </div>
     </div>
 
-    <button id="addParticipant" class="button">Adicionar Participante</button>
-    <button id="sortear" class="button">Sortear</button>
+    <div class="container">
+        <h1>Amigo Secreto</h1>
 
-    <h3>Resultados:</h3>
-    <div id="results" class="results"></div>
+        <label for="organizer">Nome da Família:</label>
+        <input type="text" id="organizer" placeholder="Nome da Família">
 
-    <div class="paper" id="paper">
-        <span id="sortedName"></span>
+        <div id="participants">
+            <h3>Participantes</h3>
+            <div class="participant">
+                <input type="text" placeholder="Nome do Participante 1">
+            </div>
+            <div class="participant">
+                <input type="text" placeholder="Nome do Participante 2">
+            </div>
+        </div>
+
+        <button class="button" id="addParticipant">Adicionar Participante</button>
+        <button class="button" id="generatePairs">Sortear</button>
+
+        <h3>Resultados:</h3>
+        <ul id="results"></ul>
+
+        <a href="https://www.linkedin.com/in/renato-m-santana-aa20601b9/" class="linkedin-link" target="_blank">Conecte-se comigo no LinkedIn</a>
     </div>
 
     <script>
-        const addParticipantBtn = document.getElementById('addParticipant');
-        const sortearBtn = document.getElementById('sortear');
         const participantsDiv = document.getElementById('participants');
-        const resultsDiv = document.getElementById('results');
-        const paperDiv = document.getElementById('paper');
-        const sortedNameSpan = document.getElementById('sortedName');
+        const addParticipantBtn = document.getElementById('addParticipant');
+        const generatePairsBtn = document.getElementById('generatePairs');
+        const resultsList = document.getElementById('results');
+        const togglePixBtn = document.getElementById('togglePix');
+        const pixKey = document.getElementById('pix-key');
 
         let participantCount = 2;
 
@@ -166,7 +159,7 @@
             participantsDiv.appendChild(participantDiv);
         });
 
-        sortearBtn.addEventListener('click', () => {
+        generatePairsBtn.addEventListener('click', () => {
             const participants = Array.from(document.querySelectorAll('#participants input'))
                 .map(input => input.value.trim())
                 .filter(name => name !== '');
@@ -177,17 +170,22 @@
             }
 
             const pairs = shuffleAndPair(participants);
-            resultsDiv.innerHTML = '';
+            resultsList.innerHTML = '';
             pairs.forEach(pair => {
                 const li = document.createElement('li');
                 li.textContent = `${pair[0]} -> ${pair[1]}`;
-                resultsDiv.appendChild(li);
+                resultsList.appendChild(li);
             });
+        });
 
-            // Animação do papel para revelar o nome sorteado
-            const randomIndex = Math.floor(Math.random() * participants.length);
-            sortedNameSpan.textContent = participants[randomIndex];
-            paperDiv.style.display = 'flex'; // Exibe o papel
+        togglePixBtn.addEventListener('click', () => {
+            if (pixKey.style.display === 'none') {
+                pixKey.style.display = 'inline';
+                togglePixBtn.textContent = 'Ocultar';
+            } else {
+                pixKey.style.display = 'none';
+                togglePixBtn.textContent = 'Exibir';
+            }
         });
 
         function shuffleAndPair(array) {
