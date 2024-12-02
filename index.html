@@ -6,73 +6,30 @@
     <title>Amigo Secreto</title>
     <style>
         body {
-            font-family: Georgia, serif;
+            font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #fdfdfd;
         }
         .container {
             max-width: 600px;
             margin: auto;
             text-align: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2, h3 {
-            color: #333;
         }
         .participant {
             margin-bottom: 10px;
-        }
-        button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn-primary {
-            background-color: #ff69b4;
-            color: white;
-        }
-        .btn-secondary {
-            background-color: #ddd;
-            color: #333;
-        }
-        #pix-key {
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-        #linkedin-link {
-            margin-top: 15px;
-            display: inline-block;
-            font-size: 14px;
-            color: #0e76a8;
-            text-decoration: none;
-        }
-        #linkedin-link:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Amigo Secreto</h1>
-        <p>Organizado por: <strong><input type="text" id="family-name" placeholder="Nome da Família"></strong></p>
-        <p>
-            <strong>Chave Pix:</strong> 
-            <span id="pix-key" onclick="revealPixKey()">Clique para revelar</span>
-        </p>
-        <h2>Participantes</h2>
+        <h1>Ajude-nos com uma doação</h1>
+        <p><strong>Chave Pix:</strong> <span id="pix-key">[INSIRA SUA CHAVE PIX AQUI]</span></p>
+
+        <h2>Amigo Secreto</h2>
         <label for="organizer">Nome do Organizador:</label>
         <input type="text" id="organizer" placeholder="Nome do Organizador">
 
         <div id="participants">
-            <h3>Lista de Participantes</h3>
+            <h3>Participantes</h3>
             <div class="participant">
                 <input type="text" placeholder="Nome do Participante 1">
             </div>
@@ -81,16 +38,11 @@
             </div>
         </div>
 
-        <button id="addParticipant" class="btn-primary">Adicionar Participante</button>
-        <button id="generatePairs" class="btn-secondary">Gerar e Sortear</button>
+        <button id="addParticipant">Adicionar Participante</button>
+        <button id="generatePairs">Gerar e Sortear</button>
 
         <h3>Resultados:</h3>
         <ul id="results"></ul>
-
-        <a id="linkedin-link" href="https://www.linkedin.com/in/seu-linkedin-aqui" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="20">
-            Conecte-se no LinkedIn
-        </a>
     </div>
 
     <script>
@@ -98,13 +50,8 @@
         const addParticipantBtn = document.getElementById('addParticipant');
         const generatePairsBtn = document.getElementById('generatePairs');
         const resultsList = document.getElementById('results');
-        const pixKey = "ab0dcb1d-f050-4cb8-9837-e7173fe937b1";
 
         let participantCount = 2;
-
-        function revealPixKey() {
-            document.getElementById('pix-key').textContent = pixKey;
-        }
 
         addParticipantBtn.addEventListener('click', () => {
             if (participantCount >= 20) {
