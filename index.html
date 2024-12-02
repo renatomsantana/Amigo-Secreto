@@ -4,147 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amigo Secreto</title>
-    <!-- Inclusão do Font Awesome para ícones -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Estilos Globais */
         body {
-            font-family: 'Georgia', serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #333;
+            font-family: Georgia, serif;
+            margin: 20px;
+            background-color: #fdfdfd;
         }
-
         .container {
-            background-color: white;
-            padding: 30px;
-            max-width: 700px;
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h2 {
-            color: #007bff;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            color: #555;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-
-        label {
-            display: block;
-            margin: 8px 0;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 12px;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        input[type="text"]:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-
-        .participant {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .participant input {
-            flex: 1;
-        }
-
-        .btn {
-            background-color: #ff69b4; /* Cor Rosa */
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #f06292; /* Cor Rosa Escuro */
-        }
-
-        .results-container {
-            margin-top: 30px;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        #pix-key {
-            display: none;
-            font-weight: bold;
-            margin-top: 10px;
-            font-size: 16px;
+        h1, h2, h3 {
             color: #333;
         }
-
-        .social-links {
-            margin-top: 30px;
-            text-align: center;
+        .participant {
+            margin-bottom: 10px;
         }
-
-        .social-links a {
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #ff69b4;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #ddd;
+            color: #333;
+        }
+        #pix-key {
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        #linkedin-link {
+            margin-top: 15px;
+            display: inline-block;
+            font-size: 14px;
+            color: #0e76a8;
             text-decoration: none;
-            color: #007bff;
-            font-size: 30px;
-            margin-right: 20px;
-            transition: color 0.3s;
         }
-
-        .social-links a:hover {
-            color: #ff69b4;
+        #linkedin-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Amigo Secreto</h1>
-
-        <!-- Adicionando o campo para o nome da família -->
-        <label for="familyName">Nome da Família:</label>
-        <input type="text" id="familyName" placeholder="Nome da Família">
-
-        <h2>Ajude-nos com uma doação</h2>
-        <div class="pix-container">
-            <p><strong>Chave Pix:</strong> 
-                <span id="pix-key">ab0dcb1d-f050-4cb8-9837-e7173fe937b1</span>
-                <button id="showPixBtn" class="btn">Mostrar Chave Pix</button>
-            </p>
-        </div>
-
-        <h3>Organizador e Participantes</h3>
+        <p>Organizado por: <strong><input type="text" id="family-name" placeholder="Nome da Família"></strong></p>
+        <p>
+            <strong>Chave Pix:</strong> 
+            <span id="pix-key" onclick="revealPixKey()">Clique para revelar</span>
+        </p>
+        <h2>Participantes</h2>
         <label for="organizer">Nome do Organizador:</label>
         <input type="text" id="organizer" placeholder="Nome do Organizador">
 
         <div id="participants">
-            <h3>Participantes</h3>
+            <h3>Lista de Participantes</h3>
             <div class="participant">
                 <input type="text" placeholder="Nome do Participante 1">
             </div>
@@ -153,46 +81,30 @@
             </div>
         </div>
 
-        <div class="btn-container">
-            <button id="addParticipant" class="btn">Adicionar Participante</button>
-            <button id="generatePairs" class="btn">Gerar e Sortear</button>
-        </div>
+        <button id="addParticipant" class="btn-primary">Adicionar Participante</button>
+        <button id="generatePairs" class="btn-secondary">Gerar e Sortear</button>
 
-        <div class="results-container">
-            <h3>Resultados:</h3>
-            <ul id="results"></ul>
-        </div>
+        <h3>Resultados:</h3>
+        <ul id="results"></ul>
 
-        <!-- Seção com o ícone do LinkedIn -->
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/seu-perfil-linkedin" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-        </div>
+        <a id="linkedin-link" href="https://www.linkedin.com/in/seu-linkedin-aqui" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="20">
+            Conecte-se no LinkedIn
+        </a>
     </div>
 
     <script>
-        // Função para alternar a visibilidade da chave Pix
-        const showPixBtn = document.getElementById('showPixBtn');
-        const pixKey = document.getElementById('pix-key');
-
-        showPixBtn.addEventListener('click', () => {
-            if (pixKey.style.display === 'none') {
-                pixKey.style.display = 'inline';
-                showPixBtn.textContent = 'Ocultar Chave Pix';
-            } else {
-                pixKey.style.display = 'none';
-                showPixBtn.textContent = 'Mostrar Chave Pix';
-            }
-        });
-
-        // Função para adicionar participantes
         const participantsDiv = document.getElementById('participants');
         const addParticipantBtn = document.getElementById('addParticipant');
         const generatePairsBtn = document.getElementById('generatePairs');
         const resultsList = document.getElementById('results');
+        const pixKey = "ab0dcb1d-f050-4cb8-9837-e7173fe937b1";
 
         let participantCount = 2;
+
+        function revealPixKey() {
+            document.getElementById('pix-key').textContent = pixKey;
+        }
 
         addParticipantBtn.addEventListener('click', () => {
             if (participantCount >= 20) {
